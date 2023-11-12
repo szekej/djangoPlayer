@@ -6,7 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Ustawienie zmiennej środowiskowej dla Django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject1.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoPlayer.settings")
 django.setup()
 
 from player.models import Video

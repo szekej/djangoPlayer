@@ -1,0 +1,89 @@
+.logo-swk {
+    font-family: 'Arial', sans-serif; /* Wybór podobnej czcionki */
+    font-size: 60px; /* Rozmiar czcionki */
+    font-weight: bold; /* Pogrubienie tekstu */
+    color: #ffcc00; /* Kolor tekstu podobny do oryginalnego */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Dodanie cienia tekstu */
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 30px; /* dostosuj pozycję w pionie */
+    left: 40px; /* dostosuj pozycję w poziomie */
+}
+
+body {
+    background-color: #F0E68C; /* Tło lekko zielonej kolorystyki */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px;
+}
+
+.main {
+    padding-top: 100px/* wysokość nagłówka */;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #556B2F; /* Kolor paska nagłówka */
+    padding: 30px;
+    position: fixed; /* Ustawienie nagłówka jako stały element */
+    width: 100%; /* Szerokość taką samą jak okna przeglądarki */
+    z-index: 1000; /* Ustawienie z-index dla warstwy nagłówka */
+}
+
+footer {
+    text-align: center;
+    background-color: #556B2F; /* Kolor stopki */
+    padding: 30px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+button {
+    background-color: #88c057; /* Kolor tła */
+    color: white; /* Kolor czcionki */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Zaokrąglenie naroży */
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s; /* Efekt przejścia przy najechaniu */
+    cursor: pointer;
+    margin-right: 10px
+}
+
+button:hover {
+    background-color: #6b9040; /* Ciemniejsze tło */
+    color: black; /* Czcionka na czarno */
+}
+
+a {
+    text-decoration: none; /* Usunięcie podkreślenia */
+    color: inherit; /* Ustawienie koloru tekstu na dziedziczony od rodzica (button) */
+}
+
+.episodes-list {
+    font-family: 'Comic Sans MS', cursive; /* Wybór podobnej czcionki */
+    font-size: 18px; /* Rozmiar czcionki */
+    line-height: 1.6; /* Interlinia, aby oddzielać tytuły */
+    color: #000; /* Kolor tekstu */
+    margin: 20px 0; /* Odstęp od innych elementów */
+}
+
+.episodes-head {
+    font-size: 28px; /* Rozmiar czcionki */
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Odstęp między tytułem a listą */
+}
+
+/*DAA520*/
