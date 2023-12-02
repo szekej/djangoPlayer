@@ -12,7 +12,7 @@
 
 body {
     background-color: #F0E68C; /* Tło lekko zielonej kolorystyki */
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     padding-bottom: 100px;
@@ -63,6 +63,7 @@ button {
 
 button:hover {
     background-color: #6b9040; /* Ciemniejsze tło */
+    font-weight: bold;
     color: black; /* Czcionka na czarno */
 }
 
@@ -80,7 +81,7 @@ a {
 }
 
 .episodes-head {
-    font-size: 28px; /* Rozmiar czcionki */
+    font-size: 32px; /* Rozmiar czcionki */
     display: block;
     font-weight: bold;
     margin-bottom: 10px; /* Odstęp między tytułem a listą */
@@ -100,16 +101,18 @@ label {
 select {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 2px grey;
+    color: white;
+    border-radius: 15px;
+    background-color: #88c057;
     cursor: pointer;
     margin-right: 10px;
+    border: none;
 }
 
 select:hover {
-    border-color: #aaa;
+    background-color: #6b9040; /* Ciemniejsze tło */
+    font-weight: bold;
+    color: black;
 }
 
 select:focus {
@@ -119,9 +122,9 @@ select:focus {
 }
 
 input[type="submit"] {
-    padding: 10px 20px; /
+    padding: 12px 20px; /
     font-size: 24px;
-    background-color: #4CAF50;
+    background-color: #88c057;
     color: white;
     border: none;
     border-radius: 20px;
@@ -131,7 +134,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #6b9040; /* Ciemniejsze tło */
     color: black; /* Czcionka na czarno */
+    font-weight: bold;
 }
 
-
+.pagination{
+    margin: 10px 0 0 10px;
+    font-weight: bold;
+}
 /*DAA520*/
