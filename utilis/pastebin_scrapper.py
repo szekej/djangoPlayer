@@ -73,17 +73,19 @@ if __name__ == "__main__":
     pastebin_dict = scrape_pastebin(pastebin_url)
     wikipedia_dict = scrape_wiki(wiki_url)
 
+
     for (key1, value1), (key2, value2) in zip(pastebin_dict.items(), wikipedia_dict.items()):
+        print(key1, " -- ", key2)
         if key1 == key2:
             episode_title = key1
             episode_number = value1[0]
             episode_link = value1[1]
             episode_desc = value2
 
-            Video.objects.update_or_create(
-                title=f"{episode_number}. {episode_title}",
-                defaults={
-                    'video_url': episode_link,
-                    'description': episode_desc
-                }
-            )
+            # Video.objects.update_or_create(
+            #     title=f"{episode_number}. {episode_title}",
+            #     defaults={
+            #         'video_url': episode_link,
+            #         'description': episode_desc
+            #     }
+            # )
