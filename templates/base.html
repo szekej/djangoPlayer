@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ŚWK Player | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'djangoPlayer/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo-swk"><a href="{% url 'index.html' %}">ŚWK</a></div>
+        <div class="header-content">
+        <button><a href="{% url 'player:video_list' %}">Lista odcinków</a></button>
+        <button onclick="randomEpisode()">Wylosuj odcinek</button>
+        </div>
+    </header>
+    <div class="main">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <!-- Dodaj inne odnośniki według potrzeb -->
+    </footer>
+
+    <script>
+        function showEpisodeList() {
+            // Tutaj dodaj logikę wyświetlania listy odcinków
+        }
+
+        function randomEpisode() {
+            // Tutaj dodaj logikę losowania odcinka
+        }
+    </script>
+</body>
+</html>
