@@ -141,4 +141,13 @@ input[type="submit"]:hover {
     margin: 10px 0 0 10px;
     font-weight: bold;
 }
+
+.video-content {
+    text-align: left;
+}
+
+.video-container {
+    margin: 0 auto;
+    max-width: 1280px; /* Ustaw maksymalną szerokość odtwarzacza */
+}
 /*DAA520*/
