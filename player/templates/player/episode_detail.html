@@ -6,11 +6,14 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{{ video.title }}</h2>
-    <p>{{ video.description }}</p>
-    <p>{{ video.video_url }}</p>
-    <video width="640" height="360" controls>
-        <source src="{{ video.video_url }}" type="video/mp4">
-        Twoja przeglądarka nie obsługuje odtwarzacza wideo.
-    </video>
+    <h2 class="episode-title">{{ video.title }}</h2>
+        <div class="video-container">
+            <video width="1280" height="720" controls>
+                <source src="{{ video.video_url }}" type="video/mp4">
+                Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+            </video>
+        </div>
+        <div class="description-container">
+            <p class="episode-description">{{ video.description }}</p>
+        </div>
 {% endblock %}
