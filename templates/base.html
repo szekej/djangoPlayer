@@ -2,32 +2,26 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ŚWK Player | {% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'djangoPlayer/styles.css' %}">
-</head>
-<body>
-    <header>
-        <div class="logo-swk"><a href="{% url 'index.html' %}">ŚWK</a></div>
-        <div class="header-content">
-        <a class="button-like-link" href="{% url 'player:video_list' %}">Lista odcinków</a>
-        <a class="button-like-link" href="#">Wylosuj odcinek</a>
+    <head>
+        <meta charset="UTF-8">
+        <title>ŚWK Player | {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'djangoPlayer/styles.css' %}">
+        <script src="{%  static 'djangoPlayer/scripts.js' %}"></script>
+
+    </head>
+    <body>
+        <header>
+            <div class="logo-swk"><a href="{% url 'index.html' %}">ŚWK</a></div>
+            <div class="header-content">
+            <a class="button-like-link" href="{% url 'player:video_list' %}">Lista odcinków</a>
+            <a class="button-like-link" id="randomEpisode">Wylosuj odcinek</a>
+            </div>
+        </header>
+        <div class="main">
+            <input type="hidden" id="totalEpisodes" value="{{ available_episodes|safe }}">>
+            {% block content %}
+            {% endblock %}
         </div>
-    </header>
-    <div class="main">
-        {% block content %}
-        {% endblock %}
-    </div>
 
-    <script>
-        function showEpisodeList() {
-            // Tutaj dodaj logikę wyświetlania listy odcinków
-        }
-
-        function randomEpisode() {
-            // Tutaj dodaj logikę losowania odcinka
-        }
-    </script>
-</body>
+    </body>
 </html>
