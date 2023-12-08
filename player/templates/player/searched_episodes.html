@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Wyszukiwane
+{% endblock %}
+
+{% block content %}
+    {% for episode in matching_episodes %}
+        <h1>{{ episode }}</h1>
+    {% endfor %}
+{% endblock %}
