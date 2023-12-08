@@ -1,12 +1,32 @@
 import requests
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 
 from player.models import Video
 
 
 # Create your views here.
+
+from .models import Video
+
+
+def get_available_episodes(request):
+    episodes = list(Video.objects.values_list('pk', flat=True))
+    return {'available_episodes': episodes}
+
+
+def search_episodes(request):
+    if request.method == "POST":
+        search_input = request.POST.get('search_input', '').lower()
+        episodes = Video.objects.all()
+        matching_episodes = [episode for episode in episodes if search_input in episode.title.lower()]
+
+        if not matching_episodes:
+            matching_episodes = ['brak odcinków']
+
+    return render(request, template_name='player/searched_episodes.html', context={'matching_episodes': matching_episodes})
 
 
 class ListPlayerView(ListView):
