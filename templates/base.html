@@ -11,14 +11,27 @@
     </head>
     <body>
         <header>
-            <div class="logo-swk"><a href="{% url 'index.html' %}">ŚWK</a></div>
+            <div class="logo-swk">
+                <a href="{% url 'index.html' %}">ŚWK</a>
+            </div>
             <div class="header-content">
-            <a class="button-like-link" href="{% url 'player:video_list' %}">Lista odcinków</a>
-            <a class="button-like-link" id="randomEpisode">Wylosuj odcinek</a>
+                <button id="openSidebarButton">=</button>
             </div>
         </header>
         <div class="main">
-            <input type="hidden" id="totalEpisodes" value="{{ available_episodes|safe }}">>
+            <div class="sidebar">
+                <div class="sidebar-content">
+                    <form action="{% url 'player:search_episodes' %}" method="post" id="searchForm">
+                        {% csrf_token %}
+                        <label for="searchInput">Wyszukaj odcinek:</label>
+                        <input type="text" id="searchInput" name="search_input" placeholder="Tytuł odcinka">
+                        <button type="submit" id="searchButton">Szukaj</button>
+                    </form>
+                    <button><a href="{% url 'player:video_list' %}">Lista odcinków</a></button>
+                    <button id="randomEpisode">Wylosuj odcinek</button>
+                </div>
+            </div>
+            <input type="hidden" id="totalEpisodes" value="{{ available_episodes|safe }}">
             {% block content %}
             {% endblock %}
         </div>
