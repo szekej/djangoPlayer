@@ -14,30 +14,91 @@ body {
     background-color: #F0E68C; /* Tło lekko zielonej kolorystyki */
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-    padding-bottom: 100px;
+    padding: 0 0 100px;
+    /*display: flex;*/
 }
 
 .main {
     padding-top: 100px/* wysokość nagłówka */;
+    transition: padding-right 0.5s ease-in-out;
 }
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    width: 90%;
+    height: 90%;
+    padding-bottom: 10px;
+    padding-right: 40px;
+    transition: padding-right 0.5s ease-in-out;
+}
+
+/*#######################################################################################*/
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Sidebar jest schowany po prawej stronie */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    transition: right 0.5s ease-in-out; /* Dodaj płynne przejście */
+    z-index: 1000; /* Ustaw większą wartość z-index */
+}
+
+
+.show-sidebar {
+    right: 0;
+}
+
+#openSidebarButton {
+    background-color: #333;
+    color: #fff;
+    border: none;
     padding: 10px;
-    position: relative;
+    cursor: pointer;
+    transition: margin-right 0.5s ease-in-out; /* Dodaj płynne przejście */
+}
+
+/*#######################################################################################*/
+#searchForm {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+#searchInput {
+    padding: 5px; /* Drobne dostosowanie paddingu dla pola tekstowego */
+    margin-right: 10px;
+}
+
+#searchForm label {
+    font-weight: bold;
+    color: #F0E68C;
+}
+
+@media screen and (max-width: 50vh) {
+    #searchForm {
+        display: none;
+    }
+}
+
+.button-like-link, #randomEpisode {
+    margin-right: 10px;
 }
 
 header {
     display: flex;
     justify-content: flex-end;
-    background-color: #556B2F; /* Kolor paska nagłówka */
+    background-color: #556B2F;
     padding: 30px;
-    position: fixed; /* Ustawienie nagłówka jako stały element */
-    width: 100%; /* Szerokość taką samą jak okna przeglądarki */
-    z-index: 1000; /* Ustawienie z-index dla warstwy nagłówka */
+    position: fixed;
+    width: 100%;
+    flex-grow: 1;
+    z-index: 999; /* Ustaw większą wartość z-index */
 }
 
 footer {
@@ -63,7 +124,6 @@ button {
 
 button:hover {
     background-color: #6b9040; /* Ciemniejsze tło */
-    font-weight: bold;
     color: black; /* Czcionka na czarno */
 }
 
@@ -77,7 +137,7 @@ a {
     font-size: 18px; /* Rozmiar czcionki */
     line-height: 1.6; /* Interlinia, aby oddzielać tytuły */
     color: #000; /* Kolor tekstu */
-    margin: 20px 0; /* Odstęp od innych elementów */
+    margin: 20px 0 20px 15px; /* Odstęp od innych elementów */
 }
 
 .episodes-head {
@@ -142,12 +202,52 @@ input[type="submit"]:hover {
     font-weight: bold;
 }
 
-.video-content {
-    text-align: left;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .video-container {
-    margin: 0 auto;
-    max-width: 1280px; /* Ustaw maksymalną szerokość odtwarzacza */
+    position: relative;
+    width: 60%;
+    margin: auto;
 }
+
+.video-container video {
+    width: 100%;
+    height: auto;
+}
+
+.description-container {
+    text-align: center;
+    margin-top: 20px; /* Ustaw stałą odległość między description a video */
+    box-sizing: border-box; /* Uwzględnij marginesy i paddingi w szerokości elementu */
+    padding: 10px;
+}
+
+.episode-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    margin-top: 30px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+
+.episode-description {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #CCCCCC00;
+    border-radius: 20px;
+    background-color: #E0D68A;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+
+
 /*DAA520*/
