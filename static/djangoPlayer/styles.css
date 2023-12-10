@@ -10,12 +10,23 @@
     left: 40px; /* dostosuj pozycję w poziomie */
 }
 
+body.overlay-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0000004D; /* Kolor czarny z 30% przezroczystości */
+    z-index: 1000; /* Umieść overlay na wierzchu innych elementów */
+    pointer-events: none; /* Upewnij się, że overlay nie przesłania interakcji z elementami pod nim */
+}
+
 body {
-    background-color: #F0E68C; /* Tło lekko zielonej kolorystyki */
-    font-family: 'Arial', sans-serif;
+    /* Resetuj margines i padding dla body, aby uniknąć przesunięcia */
     margin: 0;
-    padding: 0 0 100px;
-    /*display: flex;*/
+    padding: 0;
+    background-color: #F0E68C;
 }
 
 .main {
@@ -42,7 +53,7 @@ body {
     position: fixed;
     top: 0;
     right: -100%; /* Sidebar jest schowany po prawej stronie */
-    background-color: #333;
+    background-color: #444 ;
     color: #fff;
     padding: 20px;
     transition: right 0.5s ease-in-out; /* Dodaj płynne przejście */
@@ -52,15 +63,6 @@ body {
 
 .show-sidebar {
     right: 0;
-}
-
-#openSidebarButton {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    transition: margin-right 0.5s ease-in-out; /* Dodaj płynne przejście */
 }
 
 /*#######################################################################################*/
@@ -210,7 +212,7 @@ input[type="submit"]:hover {
 
 .video-container {
     position: relative;
-    width: 60%;
+    width: 40%;
     margin: auto;
 }
 
@@ -224,6 +226,7 @@ input[type="submit"]:hover {
     margin-top: 20px; /* Ustaw stałą odległość między description a video */
     box-sizing: border-box; /* Uwzględnij marginesy i paddingi w szerokości elementu */
     padding: 10px;
+
 }
 
 .episode-title {
@@ -246,6 +249,7 @@ input[type="submit"]:hover {
     margin-left: 20px;
     margin-right: 20px;
     padding: 10px;
+    overflow: hidden;
 }
 
 
