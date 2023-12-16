@@ -1,10 +1,11 @@
 from django.urls import path
 
-from player.views import ListPlayerView, DetailPlayerView
+from player.views import ListPlayerView, DetailPlayerView, SearchEpisodesView
 
 app_name = 'player'
 
 urlpatterns = [
     path('episodes', ListPlayerView.as_view(), name='video_list'),
-    path('video/<int:pk>/', DetailPlayerView.as_view(), name='video_detail')
+    path('video/<int:pk>/', DetailPlayerView.as_view(), name='video_detail'),
+    path('search/', SearchEpisodesView.as_view(), name='search_episodes'),
 ]
