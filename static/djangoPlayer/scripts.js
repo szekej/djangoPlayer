@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const isSidebarOpen = sidebar.classList.contains('show-sidebar');
 
         // Dostosuj padding-right w zależności od tego, czy boczny pasek nawigacyjny jest otwarty czy zamknięty
-        headerContent.style.paddingRight = isSidebarOpen ? '330px' : '40px';
-        mainContent.style.paddingRight = isSidebarOpen ? '330px' : '0';
+        headerContent.style.paddingRight = isSidebarOpen ? '430px' : '40px';
+        mainContent.style.paddingRight = isSidebarOpen ? '430px' : '0';
         document.body.classList.toggle('overlay-active', isSidebarOpen);
     });
 });
