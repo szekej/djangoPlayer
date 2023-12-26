@@ -21,7 +21,8 @@
         </form>
 
         {% for episode in episodes %}
-            {{ episode.title }}<br>
+            <a href="{% url 'player:video_detail' pk=episode.pk %}">{{ episode.title }}</a><br>
+            <button class="add-to-list" episode-pk="{{ episode.pk }}">Dodaj do listy</button>
         {% endfor %}
 
         <div class="pagination">
@@ -41,5 +42,6 @@
                 {% endif %}
             </span>
         </div>
+        <h5 id="lista-kolejki"></h5>
     </div>
 {% endblock %}
