@@ -24,7 +24,7 @@
                     <div class="sidebar-content">
                         <form action="{% url 'player:search_episodes' %}" method="post" id="searchForm">
                             {% csrf_token %}
-                            <label for="searchInput">Wyszukaj odcinek:</label>
+                            <label for="searchInput">Odcinek:</label>
                             <input type="text" id="searchInput" name="search_input" placeholder="Tytuł odcinka">
                             <button type="submit" id="searchButton">Szukaj</button>
                         </form>
