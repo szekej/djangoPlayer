@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.querySelector(".sidebar");
     const headerContent = document.querySelector(".header-content");
     const mainContent = document.querySelector(".main");
-    const bodyContent = document.querySelector("body::before");
 
     openSidebarButton.addEventListener("click", function () {
         sidebar.classList.toggle("show-sidebar");
@@ -29,3 +28,69 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.toggle('overlay-active', isSidebarOpen);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Pobierz listę odcinków z Local Storage
+    var episodesQueue = JSON.parse(localStorage.getItem('episodesQueue')) || [];
+    var listaKolejki = document.getElementById('lista-kolejki');
+    var hiddenInput = document.getElementById('base-lista-kolejki');
+    var buttons = document.querySelectorAll('.add-to-list');
+
+    function aktualizujWartoscInputa() {
+        hiddenInput.value = JSON.stringify(episodesQueue);
+    }
+
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var episodeId = button.getAttribute('episode-pk');
+            episodesQueue.push(episodeId);
+
+            console.log('Queue of episodes:', episodesQueue);
+            console.log('Added episode: ' + episodeId);
+
+            // Po dodaniu odcinka do kolejki, zapisz zaktualizowaną listę w Local Storage
+            localStorage.setItem('episodesQueue', JSON.stringify(episodesQueue));
+
+            // Wyświetl zaktualizowaną listę na stronie
+            wyswietlListeKolejki();
+        });
+    });
+
+    function wyswietlListeKolejki() {
+        listaKolejki.innerHTML = '';
+
+        // Iteruj przez elementy kolejki i dodaj je do listy
+        episodesQueue.forEach(function (episodeId) {
+            var listItem = document.createElement('li');
+            listItem.textContent = 'Odcinek ' + episodeId;
+            listaKolejki.appendChild(listItem);
+
+            // Ustaw timer na 3000 milisekund (3 sekundy), aby usunąć element z listy
+            setTimeout(function () {
+                listaKolejki.removeChild(listItem);
+            }, 3000);
+        });
+    }
+    aktualizujWartoscInputa()
+});
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     var videoPlayer = document.getElementById('player');
+//
+//     var currentEpisodeNumber = window.location.pathname.split('/').slice(-2,-1)[0];
+//     // Przekieruj użytkownika do następnego odcinka
+//
+//     var nextEpisodeNumber = parseInt(currentEpisodeNumber) + 1;
+//     console.log(currentEpisodeNumber, nextEpisodeNumber)
+//     // window.location.href = '{% url "player:video_detail" %}' + nextEpisodeNumber + '/';
+//     // videoPlayer.addEventListener('ended', function () {
+//     //     // Pobierz aktualny numer odcinka z URL
+//     //     var currentEpisodeNumber = window.location.pathname.split('/').pop();
+//     //     console.log(currentEpisodeNumber)
+//     //
+//     //     // Przekieruj użytkownika do następnego odcinka
+//     //     var nextEpisodeNumber = parseInt(currentEpisodeNumber) + 1;
+//     //     window.location.href = '{% url "player:odtwarzaj_odcinek" %}' + nextEpisodeNumber + '/';
+//     // });
+// });
