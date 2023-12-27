@@ -1,15 +1,17 @@
+import json
+
 import requests
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
+from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView
-
-from player.models import Video
-
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse
 
 # Create your views here.
-
-from .models import Video
+from .models import Video, QueueItem
 
 
 def get_available_episodes(request):
@@ -17,16 +19,41 @@ def get_available_episodes(request):
     return {'available_episodes': episodes}
 
 
-def search_episodes(request):
-    if request.method == "POST":
-        search_input = request.POST.get('search_input', '').lower()
+@login_required
+def add_to_queue(request):
+    if request.method == 'POST' :
+        episode_pk = request.POST.get('episode_pk')
+
+        # Sprawdź, czy użytkownik jest zalogowany
+        if request.user.is_authenticated:
+            # Sprawdź, czy odcinek już nie istnieje w kolejce użytkownika
+            if not QueueItem.objects.filter(user=request.user, episode_id=episode_pk).exists():
+                # Dodaj odcinek do kolejki
+                QueueItem.objects.create(user=request.user, episode_id=episode_pk)
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'success': False, 'message': 'Odcinek już jest w kolejce.'})
+        else:
+            return JsonResponse({'success': False, 'message': 'Użytkownik nie jest zalogowany.'})
+
+    return JsonResponse({'success': False, 'message': 'Błąd żądania.'})
+
+
+class SearchEpisodesView(View):
+    template_name = 'player/searched_episodes.html'
+
+    def post(self, request, *args, **kwargs):
+        search_input = self.request.POST.get('search_input', '').lower()
         episodes = Video.objects.all()
         matching_episodes = [episode for episode in episodes if search_input in episode.title.lower()]
 
         if not matching_episodes:
             matching_episodes = ['brak odcinków']
 
-    return render(request, template_name='player/searched_episodes.html', context={'matching_episodes': matching_episodes})
+        return render(request, template_name=self.template_name, context={'matching_episodes': matching_episodes})
+
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name=self.template_name, context={})
 
 
 class ListPlayerView(ListView):

@@ -2,11 +2,20 @@
 {% load static %}
 
 {% block title %}
-    Wyszukiwane
+    Searched episodes
 {% endblock %}
 
 {% block content %}
-    {% for episode in matching_episodes %}
-        <h1>{{ episode }}</h1>
-    {% endfor %}
+    <h2 class="episodes-head">
+            Wyszukane odcinki
+        </h2>
+    <div class="episodes-list">
+        {% for episode in matching_episodes %}
+            {% if episode.pk %}
+                <a href="{% url 'player:video_detail' pk=episode.pk %}">{{ episode }}</a><br>
+            {% else %}
+                <h1>{{ episode}}</h1>
+            {% endif %}
+        {% endfor %}
+    </div>
 {% endblock %}
