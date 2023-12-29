@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Twoje zapisane odcinki
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-8">
+            <h2>Twoje zapisane odcinki</h2>
+            <div id="video-container"></div>
+        </div>
+        <div class="col-4">
+            <h4>Lista odcinków</h4>
+            <ul id="episode-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        let videosData = [
+            // Tutaj umieść dane odcinków, takie jak {'title': 'Tytuł', 'url': 'URL'}
+            {% for video_data in videos_data %}
+                {'title': '{{ video_data.title }}', 'url': '{{ video_data.url }}'},
+            {% endfor %}
+        ];
+
+        let currentIndex = 0;
+
+        function playNextVideo() {
+            if (currentIndex < videosData.length) {
+                let videoData = videosData[currentIndex];
+                showVideo(videoData.title, videoData.url);
+                updateEpisodeList();
+
+                let videoElement = document.getElementById('video-player');
+                videoElement.addEventListener('ended', function () {
+                    currentIndex++;
+                    setTimeout(playNextVideo, 5000);
+                });
+            }
+        }
+
+        function showVideo(title, url) {
+            let videoContainer = document.getElementById('video-container');
+            videoContainer.innerHTML = `
+                <h2 class="episode-title">${title}</h2>
+                <div class="video-container">
+                    <video id="video-player" width="1280" height="720" controls autoplay>
+                        <source src="${url}" type="video/mp4">
+                        Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+                    </video>
+                </div>
+            `;
+        }
+
+        function updateEpisodeList() {
+            let episodeList = document.getElementById('episode-list');
+            episodeList.innerHTML = '';
+
+            for (let i = 0; i < videosData.length; i++) {
+                let listItem = document.createElement('li');
+                listItem.textContent = videosData[i].title;
+
+                if (i === currentIndex) {
+                    listItem.classList.add('current-episode');
+                }
+
+                listItem.addEventListener('click', function (index) {
+                    return function () {
+                        currentIndex = index;
+                        playNextVideo();
+                    };
+                }(i));
+
+                episodeList.appendChild(listItem);
+            }
+        }
+
+        playNextVideo();
+    </script>
+{% endblock %}

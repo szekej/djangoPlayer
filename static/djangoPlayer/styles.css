@@ -65,6 +65,11 @@ body {
     right: 0;
 }
 
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Opcjonalne: dodaje odstęp między elementami */
+}
 /*#######################################################################################*/
 #searchForm {
     display: flex;
@@ -121,7 +126,9 @@ button {
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s; /* Efekt przejścia przy najechaniu */
     cursor: pointer;
-    margin-right: 10px
+    margin-right: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 button:hover {
@@ -158,6 +165,7 @@ form {
 label {
     margin-right: 10px;
     font-weight: bold;
+    font-family: 'Arial', sans-serif;
 }
 
 select {
@@ -250,6 +258,12 @@ input[type="submit"]:hover {
     margin-right: 20px;
     padding: 10px;
     overflow: hidden;
+}
+
+.current-episode {
+    font-weight: bold;
+    color: #007bff; /* Kolor zaznaczonego odcinka */
+    cursor: pointer;
 }
 
 

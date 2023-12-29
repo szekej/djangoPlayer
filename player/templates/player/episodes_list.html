@@ -22,7 +22,7 @@
 
         {% for episode in episodes %}
             <a href="{% url 'player:video_detail' pk=episode.pk %}">{{ episode.title }}</a><br>
-            <button class="add-to-list" episode-pk="{{ episode.pk }}">Dodaj do listy</button>
+            <button class="add-to-queue-btn" data-pk="{{ episode.pk }}">Dodaj do kolejki</button>
         {% endfor %}
 
         <div class="pagination">

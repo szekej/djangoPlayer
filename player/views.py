@@ -39,6 +39,18 @@ def add_to_queue(request):
     return JsonResponse({'success': False, 'message': 'Błąd żądania.'})
 
 
+def list_queue_items(request):
+    # Pobierz wszystkie obiekty QueueItem powiązane z zalogowanym użytkownikiem
+    queue_items = QueueItem.objects.filter(user=request.user)
+
+    # Pobierz dane odcinków (tytuł i link) dla każdego obiektu QueueItem
+    videos_data = [{'title': item.episode.title,
+                    'url': item.episode.video_url,
+                    'description': item.episode.description} for item in queue_items]
+
+    return render(request, 'player/list_queue_items.html', {'videos_data': videos_data})
+
+
 class SearchEpisodesView(View):
     template_name = 'player/searched_episodes.html'
 
