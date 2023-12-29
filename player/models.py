@@ -22,4 +22,4 @@ class QueueItem(models.Model):
         unique_together = ('user', 'episode')
 
     def __str__(self):
-        return f'{self.user.username} - {self.episode.title}'
+        return self.episode.title
