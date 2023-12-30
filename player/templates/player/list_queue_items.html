@@ -18,9 +18,10 @@
 
     <script>
         let videosData = [
-            // Tutaj umieść dane odcinków, takie jak {'title': 'Tytuł', 'url': 'URL'}
             {% for video_data in videos_data %}
-                {'title': '{{ video_data.title }}', 'url': '{{ video_data.url }}'},
+                {'title': '{{ video_data.title }}',
+                 'url': '{{ video_data.url }}',
+                 'description': '{{ video_data.description }}'},
             {% endfor %}
         ];
 
@@ -29,7 +30,7 @@
         function playNextVideo() {
             if (currentIndex < videosData.length) {
                 let videoData = videosData[currentIndex];
-                showVideo(videoData.title, videoData.url);
+                showVideo(videoData.title, videoData.url, videoData.description);
                 updateEpisodeList();
 
                 let videoElement = document.getElementById('video-player');
@@ -39,8 +40,7 @@
                 });
             }
         }
-
-        function showVideo(title, url) {
+        function showVideo(title, url, description) {
             let videoContainer = document.getElementById('video-container');
             videoContainer.innerHTML = `
                 <h2 class="episode-title">${title}</h2>
@@ -50,9 +50,11 @@
                         Twoja przeglądarka nie obsługuje odtwarzacza wideo.
                     </video>
                 </div>
+                    <div class="description-container">
+                <p class="episode-description">${description}</p>
+        </div>
             `;
         }
-
         function updateEpisodeList() {
             let episodeList = document.getElementById('episode-list');
             episodeList.innerHTML = '';
@@ -75,7 +77,6 @@
                 episodeList.appendChild(listItem);
             }
         }
-
         playNextVideo();
     </script>
 {% endblock %}
