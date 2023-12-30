@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Twoje zapisane odcinki
+    Saved episodes
 {% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-8">
-            <h2>Twoje zapisane odcinki</h2>
             <div id="video-container"></div>
         </div>
-        <div class="col-4">
-            <h4>Lista odcinków</h4>
+        <div class="col-4 episodes-list">
+            <h2 class="episodes-head">
+                Lista odcinków w kolejce
+            </h2>
             <ul id="episode-list"></ul>
         </div>
     </div>
@@ -34,14 +35,29 @@
                 updateEpisodeList();
 
                 let videoElement = document.getElementById('video-player');
+                let savedVolume = getSavedVolume(); // Odczytaj zapisaną głośność
+
+                // Ustaw głośność na zapisaną wartość lub domyślną
+                videoElement.volume = savedVolume !== null ? savedVolume : 1.0;
+
                 videoElement.addEventListener('ended', function () {
                     currentIndex++;
+                    saveVolume(videoElement.volume); // Zapisz głośność po zakończeniu odtwarzania
                     setTimeout(playNextVideo, 5000);
                 });
             }
         }
+        function saveVolume(volume) {
+            // Zapisz głośność w pamięci lokalnej
+            localStorage.setItem('userVolume', volume);
+        }
+        function getSavedVolume() {
+            // Odczytaj zapisaną głośność z pamięci lokalnej
+            return parseFloat(localStorage.getItem('userVolume'));
+        }
         function showVideo(title, url, description) {
             let videoContainer = document.getElementById('video-container');
+
             videoContainer.innerHTML = `
                 <h2 class="episode-title">${title}</h2>
                 <div class="video-container">
@@ -50,9 +66,9 @@
                         Twoja przeglądarka nie obsługuje odtwarzacza wideo.
                     </video>
                 </div>
-                    <div class="description-container">
-                <p class="episode-description">${description}</p>
-        </div>
+                <div class="description-container">
+                    <p class="episode-description">${description}</p>
+                </div>
             `;
         }
         function updateEpisodeList() {

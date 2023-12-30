@@ -93,7 +93,7 @@ body {
     }
 }
 
-.button-like-link, #randomEpisode {
+.button-like-link{
     margin-right: 10px;
 }
 
@@ -117,13 +117,16 @@ footer {
     width: 100%;
 }
 
-button {
+.button-like-link {
     background-color: #88c057; /* Kolor tła */
     color: white; /* Kolor czcionki */
     border: none;
     padding: 10px 20px;
     border-radius: 20px; /* Zaokrąglenie naroży */
     font-size: 16px;
+    font-family: Arial, sans-serif; /* Ustawienia czcionki */
+    text-align: center; /* Wycentrowanie tekstu */
+    line-height: 1.5; /* Wysokość linii, aby wycentrować tekst w pionie */
     transition: background-color 0.3s, color 0.3s; /* Efekt przejścia przy najechaniu */
     cursor: pointer;
     margin-right: 10px;
@@ -131,7 +134,7 @@ button {
     margin-bottom: 10px;
 }
 
-button:hover {
+.button-like-link:hover {
     background-color: #6b9040; /* Ciemniejsze tło */
     color: black; /* Czcionka na czarno */
 }
@@ -142,17 +145,20 @@ a {
 }
 
 .episodes-list {
-    font-family: 'Comic Sans MS', cursive; /* Wybór podobnej czcionki */
+    font-family: 'Arial', sans-serif; /* Wybór podobnej czcionki */
+    font-weight: bold;
     font-size: 18px; /* Rozmiar czcionki */
     line-height: 1.6; /* Interlinia, aby oddzielać tytuły */
     color: #000; /* Kolor tekstu */
     margin: 20px 0 20px 15px; /* Odstęp od innych elementów */
+    cursor: pointer;
 }
 
 .episodes-head {
     font-size: 32px; /* Rozmiar czcionki */
     display: block;
     font-weight: bold;
+    cursor: default;
     margin-bottom: 10px; /* Odstęp między tytułem a listą */
 }
 
@@ -262,10 +268,24 @@ input[type="submit"]:hover {
 
 .current-episode {
     font-weight: bold;
-    color: #007bff; /* Kolor zaznaczonego odcinka */
+    color: #1C501E7F; /* Kolor zaznaczonego odcinka */
     cursor: pointer;
 }
 
+.add-to-queue-btn.saved {
+    background-color: #808080FF; /* Kolor tła dla przycisku zapisanego odcinka */
+    color: black;
+    cursor: default;
+}
+.remove-from-queue-btn,
+.remove-from-queue-btn:hover{
+    background-color: #8B0000FF; /* Kolor tła dla przycisku zapisanego odcinka */
+    color: #FFFFFFFF;
+}
 
+#episode-list {
+    list-style: none;
+    padding: 0;
+}
 
 /*DAA520*/
