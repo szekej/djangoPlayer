@@ -13,10 +13,10 @@
         <div class="overlay">
             <header>
                 <div class="logo-swk">
-                    <a href="{% url 'index.html' %}">ŚWK</a>
+                    <a href="{% url 'index.html' %}"><img src="{% static 'djangoPlayer\swk_logo.png'%}" alt="logo"></a>
                 </div>
                 <div class="header-content">
-                    <button id="openSidebarButton">&#9776; Menu</button>
+                    <button class="button-like-link" id="openSidebarButton">&#9776; Menu</button>
                 </div>
             </header>
             <div class="main">
@@ -26,14 +26,15 @@
                             {% csrf_token %}
                             <label for="searchInput">Odcinek:</label>
                             <input type="text" id="searchInput" name="search_input" placeholder="Tytuł odcinka">
-                            <button type="submit" id="searchButton">Szukaj</button>
+                            <button class="button-like-link" type="submit" id="searchButton">Szukaj</button>
                         </form>
-                        <button><a href="{% url 'player:video_list' %}">Lista odcinków</a></button>
-                        <button id="randomEpisode">Wylosuj odcinek</button>
+                        <a class="button-like-link" href="{% url 'player:video_list' %}">Lista odcinków</a>
+                        <a class="button-like-link" href="{% url 'player:list_queue_items' %}">Zapisane odcinki</a>
+                        <button class="button-like-link" id="randomEpisode">Wylosuj odcinek</button>
                     </div>
                 </div>
                 <input type="hidden" id="totalEpisodes" value="{{ available_episodes|safe }}">
-                <input type="hidden" id="base-lista-kolejki" name="lista_kolejki">
+
                 {% block content %}
                 {% endblock %}
             </div>
