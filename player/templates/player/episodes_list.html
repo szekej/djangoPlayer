@@ -22,8 +22,18 @@
 
         {% for episode in episodes %}
             <a href="{% url 'player:video_detail' pk=episode.pk %}">{{ episode.title }}</a><br>
-            <button class="add-to-queue-btn" data-pk="{{ episode.pk }}">Dodaj do kolejki</button>
+            <button class="add-to-queue-btn button-like-link{% if episode.title in queued_episodes %} saved{% endif %}"
+                    data-pk="{{ episode.pk }}">Dodaj do kolejki</button>
+            {% if episode.title in queued_episodes %}
+                <form method="post" action="{% url 'player:remove_from_queue' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="episode_pk" value="{{ episode.pk }}">
+                    <button type="submit" class="remove-from-queue-btn button-like-link{% if episode.pk in queued_episodes %} saved{% else %} hidden{% endif %}">
+                        Usuń z kolejki</button>
+                </form>
+            {% endif %}
         {% endfor %}
+
 
         <div class="pagination">
             <span class="step-links">
@@ -42,6 +52,5 @@
                 {% endif %}
             </span>
         </div>
-        <h5 id="lista-kolejki"></h5>
     </div>
 {% endblock %}
